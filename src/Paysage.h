@@ -10,8 +10,8 @@
 #define promenade_mobile_tvs_Paysage_h
 
 #include "ofMain.h"
-#include "ofxThreadedImageLoader.h"
-
+//#include "ofxThreadedImageLoader.h"
+#include "ofURLFileLoader.h"
 
 #define IMG_STACK_LENGHT 3 
 #define STATIC_LENGHT 10 // in sec
@@ -29,11 +29,11 @@ public:
     void drawStatic();
     void drawTransition();
     
-    void prepareLoadedImageH(ofImage* image);
-    void prepareLoadedImageB(ofImage* image);
-    bool hasJustArrived(ofImage image);
+    //void prepareLoadedImageH(ofImage* image);
+    //void prepareLoadedImageB(ofImage* image);
+    //bool hasJustArrived(ofImage image);
     
-    //void urlResponse(ofHttpResponse & response);
+    void urlResponse(ofHttpResponse & response);
     void loadH();
     void loadB();
     void exit();
@@ -67,7 +67,7 @@ public:
     long trans_ts;
     bool ON_TRANSITION;
     
-    ofxThreadedImageLoader loader;
+    //ofxThreadedImageLoader loader;
     
     
     

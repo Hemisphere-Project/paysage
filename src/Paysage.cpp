@@ -23,6 +23,8 @@ Paysage::Paysage(float _x, float _y, float _w, float _h)
     FIRST_LOAD_H=true;
     FIRST_LOAD_B=true;
     
+    ofRegisterURLNotification(this);
+    
     
     alpha = 255;
     timestamp = ofGetUnixTime();
@@ -84,14 +86,14 @@ void Paysage::drawStatic(){
     
 	if(imgH[imgHIndex].bAllocated()){
         
-        if(hasJustArrived(imgH[imgHIndex])) prepareLoadedImageH(&imgH[imgHIndex]);
+        //if(hasJustArrived(imgH[imgHIndex])) prepareLoadedImageH(&imgH[imgHIndex]);
         
 		ofSetColor(255);
         imgH[imgHIndex].draw(x, y);
     }
 	if(imgB[imgBIndex].bAllocated()){
         
-        if(hasJustArrived(imgB[imgBIndex])) prepareLoadedImageB(&imgB[imgBIndex]);
+        //if(hasJustArrived(imgB[imgBIndex])) prepareLoadedImageB(&imgB[imgBIndex]);
 		ofSetColor(255);
         imgB[imgBIndex].draw(x, y+h/2);
     }
@@ -107,8 +109,8 @@ void Paysage::drawTransition(){
     
 	if(imgH[imgHIndex].bAllocated() && imgH[nextHIndex].bAllocated()){
         
-        if(hasJustArrived(imgH[imgHIndex])) prepareLoadedImageH(&imgH[imgHIndex]);
-        if(hasJustArrived(imgH[nextHIndex])) prepareLoadedImageH(&imgH[nextHIndex]);
+        //if(hasJustArrived(imgH[imgHIndex])) prepareLoadedImageH(&imgH[imgHIndex]);
+        //if(hasJustArrived(imgH[nextHIndex])) prepareLoadedImageH(&imgH[nextHIndex]);
 		      
         ofSetColor(255,255,255,255-alpha);
         imgH[imgHIndex].getTextureReference().draw(x,y);
@@ -117,8 +119,8 @@ void Paysage::drawTransition(){
     }
 	if(imgB[imgBIndex].bAllocated() && imgB[nextBIndex].bAllocated()){
         
-        if(hasJustArrived(imgB[imgBIndex])) prepareLoadedImageB(&imgB[imgBIndex]);
-        if(hasJustArrived(imgB[nextBIndex])) prepareLoadedImageB(&imgB[nextBIndex]);
+        //if(hasJustArrived(imgB[imgBIndex])) prepareLoadedImageB(&imgB[imgBIndex]);
+        //if(hasJustArrived(imgB[nextBIndex])) prepareLoadedImageB(&imgB[nextBIndex]);
 		
         ofSetColor(255,255,255,255-alpha);
         imgB[imgBIndex].getTextureReference().draw(x,y+h/2);
@@ -129,7 +131,7 @@ void Paysage::drawTransition(){
     
 }
 
-void Paysage::prepareLoadedImageH(ofImage* image){
+/*void Paysage::prepareLoadedImageH(ofImage* image){
     image->resize(w, (int)floor(image->getHeight()*w/image->getWidth()));
     image->crop(0, 0, w, h/2);
 }
@@ -143,9 +145,9 @@ bool Paysage::hasJustArrived(ofImage image){
     }else{
         return false;
     }
-}
+}*/
 
-/*void Paysage::urlResponse(ofHttpResponse & response){
+void Paysage::urlResponse(ofHttpResponse & response){
     
 	if(response.status==200 && response.request.name == "imgHPaysage"){
 		imgH[loadingHIndex].loadImage(response.data);
@@ -155,10 +157,8 @@ bool Paysage::hasJustArrived(ofImage image){
         imgH[loadingHIndex].crop(0, 0, w, h/2);
         
         
-		//loadingH=false;
-        
         loadingHIndex++;
-        if(loadingHIndex >= PAYSAGE_IMG_STACK_LENGHT)
+        if(loadingHIndex >= IMG_STACK_LENGHT)
             loadingHIndex = 0;
 
         if(FIRST_LOAD_H){ // in the beginning we load twice
@@ -177,7 +177,7 @@ bool Paysage::hasJustArrived(ofImage image){
         
 
         loadingBIndex++;
-        if(loadingBIndex >= PAYSAGE_IMG_STACK_LENGHT)
+        if(loadingBIndex >= IMG_STACK_LENGHT)
             loadingBIndex = 0;
 
         if(FIRST_LOAD_B){ // in the beginning we load twice
@@ -186,12 +186,24 @@ bool Paysage::hasJustArrived(ofImage image){
         }
         
 	}else {
-		//cout << response.status << " " << response.error << endl;
-		//if(response.status!=-1) loading=false;
+		cout << response.status << " " << response.error << endl;
 	}
-}*/
+}
 
 void Paysage::loadH(){
+    imgH[loadingHIndex].clear();
+    int imgNbr = (int)floor(1+ofRandom(1)*6.99);
+	ofLoadURLAsync("http://pm.alainbarthelemy.com/paysage/img" + ofToString(imgNbr) + ".jpg","imgHPaysage");
+    
+}
+
+void Paysage::loadB(){
+    imgB[loadingBIndex].clear();
+    int imgNbr = (int)floor(1+ofRandom(1)*6.99);
+	ofLoadURLAsync("http://pm.alainbarthelemy.com/paysage/img" + ofToString(imgNbr) + ".jpg","imgBPaysage");
+}
+
+/*void Paysage::loadH(){
     
     
     if(FIRST_LOAD_H){ // in the beginning we load twice
@@ -258,8 +270,10 @@ void Paysage::loadB(){
         
     }
     
-}
+}*/
 
 void Paysage::exit() {
-    loader.stopThread();
+    //loader.stopThread();
+    ofUnregisterURLNotification(this);
+
 }
