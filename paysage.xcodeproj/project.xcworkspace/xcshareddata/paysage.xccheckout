@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C7137F7B-868E-409C-A564-BB90F2154883</string>
+	<key>IDESourceControlProjectName</key>
+	<string>paysage</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FD0CE8D7-2103-437B-94D8-73A4F33889F6</key>
+		<string>https://github.com/hemisphere-code/paysage.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>paysage.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FD0CE8D7-2103-437B-94D8-73A4F33889F6</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/hemisphere-code/paysage.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FD0CE8D7-2103-437B-94D8-73A4F33889F6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FD0CE8D7-2103-437B-94D8-73A4F33889F6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>paysage</string>
+		</dict>
+	</array>
+</dict>
+</plist>

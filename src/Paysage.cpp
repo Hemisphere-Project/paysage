@@ -138,7 +138,7 @@ void Paysage::prepareLoadedImageB(ofImage* image){
     image->crop(0, image->getHeight() - h/2, w, h/2);
 }
 bool Paysage::hasJustArrived(ofImage image){
-    if(image.isAllocated() && image.getWidth() != w && image.getHeight() != h){/// HACK !!!
+    if(image.isAllocated() && image.getWidth() != w && image.getHeight() != h/2){/// HACK !!!
         return true;
     }else{
         return false;
